@@ -4,8 +4,8 @@
 		exit();
 	}
 	if(empty($_POST['dbhost'])){
-		echo '<h1>安装向导</h1>';
-		echo '<form action="install.php" method="post">数据库主机：<input type="text" name="dbhost" size="10" > : <input type="text" name="dbport" size="3" placeholder="3306"><br />数据库用户：<input type="text" name="dbuser" ><br />数据库密码：<input type="text" name="dbpass" ><br />数据库名称：<input type="text" name="dbname" ><br /><br /><input type="submit" value="下一步"></form>';
+		echo '<h1>Installation</h1>';
+		echo '<form action="install.php" method="post">Host: <input type="text" name="dbhost" size="10" > : <input type="text" name="dbport" size="3" placeholder="3306"><br />User: <input type="text" name="dbuser" ><br />Pass: <input type="text" name="dbpass" ><br />Name: <input type="text" name="dbname" ><br /><br /><input type="submit" value="Next"></form>';
 		exit();
 	}
 	$dbhost = $_POST['dbhost'].':';
@@ -20,7 +20,7 @@
 	$dbtable = "KAOQIN";
 	$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 	if(!$con){
-		echo '连接失败！';
+		echo 'Connection Failed!';
 		header("Refresh:1,url=install.php");
 		exit();
 	}
@@ -34,6 +34,6 @@
 	fclose($o);
 	$lock = fopen("install.lock","w");
 	fclose($lock);
-	echo '安装成功！<br />管理员初始账户：user<br />管理员初始密码：pass<br />';
-	echo '<a href="index.php"><button>返回主页</button></a><a href="/admin/"><button>管理面板</button></a>';
+	echo 'Installation Done! <br />Administrator: user<br />Default Password: pass<br />';
+	echo '<a href="index.php"><button>Return to index.php</button></a><a href="/admin/"><button>Control Panel</button></a>';
 ?>
